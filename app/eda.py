@@ -1,6 +1,15 @@
 import pandas as pd
+import numpy as np
+from sklearn.metrics import confusion_matrix
 
 
+def metrics(y_true, y_pred):
+    tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
+    matrix = np.array([[tp, fp], [fn, tn]])
+    precision = tp/(tp + fp)
+    recall = tp/(tp + fn)
+    accuracy = (tp + tn)/sum(tn, fp, fn, tp)
+    return precision, recall, accuracy, matrix
 
 def total_sold(series):
     """
