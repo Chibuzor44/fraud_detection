@@ -48,7 +48,7 @@ def get_data(datafile):
     return X, y
 
 if __name__ == '__main__':
-    X, y = get_data('../data.json')
+    X, y = get_data('../train_data.json')
     print(X.shape)
     model = MyModel()
     model.fit(X, y)
