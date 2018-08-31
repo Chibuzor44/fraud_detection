@@ -8,7 +8,7 @@ def metrics(y_true, y_pred):
     matrix = np.array([[tp, fp], [fn, tn]])
     precision = tp/(tp + fp)
     recall = tp/(tp + fn)
-    accuracy = (tp + tn)/sum(tn, fp, fn, tp)
+    accuracy = (tp + tn)/(tn+fp+fn+tp)
     return precision, recall, accuracy, matrix
 
 def total_sold(series):
@@ -19,7 +19,7 @@ def total_sold(series):
     total_sold = 0
     for dic in series:
         total_sold += dic['quantity_sold']
-    return  total_sold
+    return total_sold
 
 
 def try_err(df):
