@@ -3,15 +3,19 @@ from eda import clean_data
 import pandas as pd
 import pickle
 
-rf = RandomForestClassifier()
+rf = RandomForestClassifier(n_estimators=180,
+                              max_depth=30,
+                              max_features=5,
+                              min_samples_split=4,
+                              min_samples_leaf=2,
+                              criterion="gini",
+                              n_jobs=-1)
 
 
 
 class MyModel():
 
     def __init__(self):
-        self.X = None
-        self.y = None
         self.model = rf
 
     def fit(self, X, y):
@@ -26,9 +30,7 @@ class MyModel():
         -------
         self: The fit model object.
         """
-        self.X = X
-        self.y = y
-        self.model = self.model.fit(self.X, self.y)
+        self.model = self.model.fit(X, y)
         return self
 
     def predict_proba_1(self, X):
@@ -48,8 +50,10 @@ def get_data(datafile):
     return X, y
 
 if __name__ == '__main__':
+    pd.set_option("display.max_columns", 500)
     X, y = get_data('../train_data.json')
-    # print(X.shape)
+    print(X)
+    print(X.shape)
     model = MyModel()
     model.fit(X, y)
     with open('model.pkl', 'wb') as f:
