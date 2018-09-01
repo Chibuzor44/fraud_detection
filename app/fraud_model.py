@@ -49,7 +49,7 @@ def get_data(datafile):
 
 if __name__ == '__main__':
     X, y = get_data('../train_data.json')
-    print(X.shape)
+    # print(X.shape)
     model = MyModel()
     model.fit(X, y)
     with open('model.pkl', 'wb') as f:
@@ -59,6 +59,7 @@ if __name__ == '__main__':
     with open('model.pkl', 'rb') as f:
         models = pickle.load(f)
     df = pd.read_json("../test_script_examples.json")
+
     df = clean_data(df)
 
     # Create features and labels

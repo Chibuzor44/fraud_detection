@@ -41,8 +41,16 @@ def try_err(df):
     return df
 
 
+def currency(df):
+    money = ['currency_AUD','currency_CAD', 'currency_EUR', 'currency_GBP',
+             'currency_MXN', 'currency_NZD', 'currency_USD']
+    for country in money:
+        try:
+            df[country]
+        except:
+            df[country] = 0
 
-
+    return df
 
 def clean_data(df):
     """
@@ -85,6 +93,7 @@ def clean_data(df):
     except:
         df['label'] = False
     df = pd.get_dummies(df, columns=["currency", "payout_type", "public_domain"])
+    df = currency(df)
     df.drop(columns=columns, axis='columns', inplace=True)
     df.dropna(axis="index", inplace=True)
     return df
