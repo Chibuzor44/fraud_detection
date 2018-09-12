@@ -8,7 +8,7 @@ Internet fruad has grown in the past couple of years and it is a major problem f
 ## Navigation
 The following explains scripts and notebooks I used:<br>
 <ul>
-  <li> This notebook show the EDA process and <a href="gradientboosting.ipynb">GradientBoosting</a> </li> model.
-  <li> This notebook show the EDA process and <a href="randomforest.ipynb">RandomForest</a> </li> model.
+  <li> This notebook show the EDA process and <a href="gradientboosting.ipynb">GradientBoosting</a> model.</li> <br>
+  <li> This notebook show the EDA process and <a href="randomforest.ipynb">RandomForest</a> model.</li> <br>
 </ul>
 </p>
