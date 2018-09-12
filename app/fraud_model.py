@@ -50,15 +50,15 @@ def get_data(datafile):
     return X, y
 
 if __name__ == "__main__":
-    pd.set_option("display.max_columns", 500)
-    X, y = get_data("../train_data.json")
-    print(X)
-    print(X.shape)
-    model = MyModel()
-    model.fit(X, y)
-    with open("model.pkl", "wb") as f:
-        # Write the model to a file.
-        pickle.dump(model, f)
+    # pd.set_option("display.max_columns", 500)
+    # X, y = get_data("../train_data.json")
+    # print(X)
+    # print(X.shape)
+    # model = MyModel()
+    # model.fit(X, y)
+    # with open("model.pkl", "wb") as f:
+    #     # Write the model to a file.
+    #     pickle.dump(model, f)
 
     with open("model.pkl", "rb") as f:
         models = pickle.load(f)

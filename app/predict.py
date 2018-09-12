@@ -24,7 +24,7 @@ def store_data(n=0):
     for iter in range(n):
         data = live_data(iter)["data"][0]
         if db.live_records.find({"object_id": data["object_id"]}).count() == 0:
-            db.live_records.insert_many(data)
+            db.live_records.insert(data)
             time.sleep(360)
 
 
@@ -44,25 +44,6 @@ def segment(x):
         return "high risk"
 
 if __name__=="__main__":
-    df = mongo_data()
-    df1 = clean_data(df)
-    df1.pop("_id")
-    X = df1.values
-    # store_data(1)
-    # data = live_data()
-    # X = main(data)
-    #Unpickle the model
-    with open("model.pkl", "rb") as f:
-        model = pickle.load(f)
 
-    #Make the predictions
-    y_predict = model.predict(X)
-    y_pred_proba = model.predict_proba_1(X)
-    print(y_pred_proba)
-    # print(X)
-    # print(y_predict)
-    # #Create a Dataframe of predicted probabilities
-    # df_out = pd.DataFrame(y_predict, columns=["Prediction"])
-    # print(df_out)
-    # #Output prediction to a file
-    # df_out.to_html("templates/prediction.html")
+    store_data(30)
+
