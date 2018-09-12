@@ -1,4 +1,5 @@
 import pickle
+import pandas as pd
 from fraud_model import MyModel
 from predict import mongo_data, segment
 from eda import clean_data
@@ -22,16 +23,16 @@ def predict():
     df.pop("_id")
     df1 = clean_data(df)
     X = df1.values
-    with open("model.pickle", "rb") as f:
-        model = pickle.load(f)
 
-    df["probability"] = model.predict_proba_1(X)[:, 1].round(3)
-    df["fraud_level"] = df["probability"].apply(segment)
-    df2 = df[df["fraud_level"].isin(["low risk", "medium risk", "high risk"])]
-    df3 = df2[["object_id", "probability", "fraud_level"]]
-    return render_template("predict.html", title="Home", pred = df3)
+    df["probability of fraud"] = model.predict_proba_1(X)[:, 1].round(3)
+    df["risk_level"] = df["probability of fraud"].apply(segment)
+    df2 = df[df["risk_level"].isin(["low risk", "medium risk", "high risk"])]
+    df2.to_html("templates/prediction.html")
+    df2.to_csv("prediction.csv")
+    return render_template("prediction.html", title="Home")
 
 
 if __name__ == "__main__":
-
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    with open("model.pkl", "rb") as f:
+        model = pickle.load(f)
+    app.run(host='0.0.0.0', port=8084, debug=True)
