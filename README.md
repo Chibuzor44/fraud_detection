@@ -1,1 +1,3 @@
 # Fraud Detection
+
+Internet fruad has grown in the past couple of years and is a major problem for organizations in which their business model or operation is heavily dependent on using online platform. Being able to detect what is not fraud, likely fraud or fraud is key to keeping customers and maintaining trust. Determining each of this is important in budgeting for fraud investigation. Here I trained two models, RandomForest and GradientBoosting for classification of fraud cases such that it will flag an account to be either high risk, medium risk, or low risk fraud case for investigation using data from an event organizing company.
